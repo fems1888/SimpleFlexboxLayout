@@ -1,0 +1,221 @@
+package com.example.flexlib;
+
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.util.AttributeSet;
+import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.ViewGroup;
+
+import static android.view.View.MeasureSpec.AT_MOST;
+import static android.view.View.MeasureSpec.EXACTLY;
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+
+/**
+ * @author Created by jackieyao on 2018/6/15 下午4:59.
+ */
+
+public class FlexboxLayout extends ViewGroup {
+    private int[] childLeft;
+    private int[] childRight;
+    private int[] childTop;
+    private int[] childBottom;
+    int marginLeft;
+    int marginTop ;
+    /**
+     * 最小的宽度  如果比这个小就要换行
+     */
+    int smallestWidth;
+    /**
+     * 临时变量 记录最边界的高度异常的值
+     */
+    int usedHeightSpec;
+
+    public FlexboxLayout(Context context) {
+        this(context, null);
+
+    }
+
+    public FlexboxLayout(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public FlexboxLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init(context, attrs, defStyleAttr);
+    }
+
+    private void init(Context context, AttributeSet attrs, int defStyleAttr) {
+        TypedArray ta = getContext().obtainStyledAttributes(attrs,R.styleable.FlexboxLayout,defStyleAttr,0);
+        marginLeft = ta.getInt(R.styleable.FlexboxLayout_Flex_Margin_Left,30);
+        marginTop = ta.getInt(R.styleable.FlexboxLayout_Flex_Margin_Top,30);
+        smallestWidth = 2*marginLeft;
+        ta.recycle();
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (childLeft == null) {
+            childLeft = new int[getChildCount()];
+            childTop = new int[getChildCount()];
+            childRight = new int[getChildCount()];
+            childBottom = new int[getChildCount()];
+        }
+    }
+
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int childCount = getChildCount();
+        int childWidthSpec;
+        int childHeightSpec;
+        int usedWidth = 0;
+        int usedHeight = 0;
+        //child的顶部坐标
+        int locationHeight = 0;
+        int selfWidthSpecMode = MeasureSpec.getMode(widthMeasureSpec);
+        int selfWidthSpecSize = MeasureSpec.getSize(widthMeasureSpec);
+        int selfHeightSpecMode = MeasureSpec.getMode(heightMeasureSpec);
+        int selfHeightSpecSize = MeasureSpec.getSize(heightMeasureSpec);
+
+        for (int i = 0; i < childCount; i++) {
+            View chileView = getChildAt(i);
+            LayoutParams lp = chileView.getLayoutParams();
+
+            switch (lp.width) {
+                case MATCH_PARENT:
+                    if (selfWidthSpecMode == EXACTLY || selfWidthSpecMode == AT_MOST) {
+                        childWidthSpec = MeasureSpec.makeMeasureSpec(selfWidthSpecSize - usedWidth <= smallestWidth ? selfWidthSpecSize : selfWidthSpecSize - usedWidth, EXACTLY);
+                    } else {
+                        childWidthSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+                    }
+                    break;
+                case WRAP_CONTENT:
+                    if (selfWidthSpecMode == EXACTLY || selfWidthSpecMode == AT_MOST) {
+                        childWidthSpec = MeasureSpec.makeMeasureSpec(selfWidthSpecSize - usedWidth <= smallestWidth ? selfWidthSpecSize : selfWidthSpecSize - usedWidth, AT_MOST);
+                    } else {
+                        childWidthSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+                    }
+                    break;
+                default:
+                    childWidthSpec = MeasureSpec.makeMeasureSpec(lp.width, EXACTLY);
+                    break;
+            }
+
+            switch (lp.height) {
+                case MATCH_PARENT:
+                    if (selfHeightSpecMode == EXACTLY || selfHeightSpecMode == AT_MOST) {
+                        childHeightSpec = MeasureSpec.makeMeasureSpec(selfHeightSpecSize - usedHeight, EXACTLY);
+                    } else {
+                        childHeightSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+                    }
+                    break;
+                case WRAP_CONTENT:
+                    if (selfHeightSpecMode == EXACTLY || selfHeightSpecMode == AT_MOST) {
+                        childHeightSpec = MeasureSpec.makeMeasureSpec(selfHeightSpecSize - usedHeight, AT_MOST);
+                    } else {
+                        childHeightSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+                    }
+                    break;
+                default:
+                    childHeightSpec = MeasureSpec.makeMeasureSpec(lp.height, EXACTLY);
+                    break;
+            }
+
+            chileView.measure(childWidthSpec, childHeightSpec);
+            usedWidth = usedWidth + chileView.getMeasuredWidth() + marginLeft;
+            if (selfWidthSpecSize - usedWidth <= smallestWidth) {
+                locationHeight = locationHeight + chileView.getMeasuredHeight();
+                usedHeightSpec = chileView.getMeasuredHeight();
+                usedHeight = usedHeight + chileView.getMeasuredHeight();
+                usedWidth = 0;
+                //最后一个会使高度发生异变 这时要重新测量
+                switch (lp.width) {
+                    case MATCH_PARENT:
+                        if (selfWidthSpecMode == EXACTLY || selfWidthSpecMode == AT_MOST) {
+                            childWidthSpec = MeasureSpec.makeMeasureSpec(selfWidthSpecSize - usedWidth <= smallestWidth ? selfWidthSpecSize : selfWidthSpecSize - usedWidth, EXACTLY);
+                        } else {
+                            childWidthSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+                        }
+                        break;
+                    case WRAP_CONTENT:
+                        if (selfWidthSpecMode == EXACTLY || selfWidthSpecMode == AT_MOST) {
+                            childWidthSpec = MeasureSpec.makeMeasureSpec(selfWidthSpecSize - usedWidth <= smallestWidth ? selfWidthSpecSize : selfWidthSpecSize - usedWidth, AT_MOST);
+                        } else {
+                            childWidthSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+                        }
+                        break;
+                    default:
+                        childWidthSpec = MeasureSpec.makeMeasureSpec(lp.width, EXACTLY);
+                        break;
+                }
+                switch (lp.height) {
+                    case MATCH_PARENT:
+                        if (selfHeightSpecMode == EXACTLY || selfHeightSpecMode == AT_MOST) {
+                            childHeightSpec = MeasureSpec.makeMeasureSpec(selfHeightSpecSize - usedHeight, EXACTLY);
+                        } else {
+                            childHeightSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+                        }
+                        break;
+                    case WRAP_CONTENT:
+                        if (selfHeightSpecMode == EXACTLY || selfHeightSpecMode == AT_MOST) {
+                            childHeightSpec = MeasureSpec.makeMeasureSpec(selfHeightSpecSize - usedHeight, AT_MOST);
+                        } else {
+                            childHeightSpec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+                        }
+                        break;
+                    default:
+                        childHeightSpec = MeasureSpec.makeMeasureSpec(lp.height, EXACTLY);
+                        break;
+                }
+                //重新测量
+                chileView.measure(childWidthSpec, childHeightSpec);
+                //减掉异变的高度 再加上重新测量获取的正确的高度
+                usedHeight = usedHeight - usedHeightSpec + chileView.getMeasuredHeight() + marginTop;
+                locationHeight = locationHeight - usedHeightSpec + chileView.getMeasuredHeight() + marginTop;
+            }
+            if (usedHeight == 0) {
+
+                usedHeight = usedHeight > chileView.getMeasuredHeight() ? usedHeight : chileView.getMeasuredHeight() + marginTop;
+            }
+
+            if (i == 0) {
+                childLeft[i] = marginLeft;
+                childTop[i] = marginTop;
+                childRight[i] = usedWidth;
+                childBottom[i] = usedHeight;
+
+            } else {
+                childLeft[i] = usedWidth == 0 ? marginLeft : usedWidth - chileView.getMeasuredWidth();
+                childTop[i] = locationHeight + marginTop;
+                childRight[i] = usedWidth == 0 ? chileView.getMeasuredWidth() + marginLeft : usedWidth;
+                childBottom[i] = usedHeight;
+                if (usedWidth == 0) {
+                    usedWidth = chileView.getMeasuredWidth() + marginLeft;
+                }
+            }
+        }
+        setMeasuredDimension(getScreenWidth(getContext()), usedHeight + marginTop);
+
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        int cCount = getChildCount();
+        /**
+         * 遍历所有childView根据其宽和高，以及margin进行布局
+         */
+        for (int i = 0; i < cCount; i++) {
+            View childView = getChildAt(i);
+            childView.layout(childLeft[i], childTop[i], childRight[i], childBottom[i]);
+
+        }
+    }
+
+    public static int getScreenWidth(Context context) {
+        DisplayMetrics dm = context.getResources().getDisplayMetrics();
+        return dm.widthPixels;
+    }
+}

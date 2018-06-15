@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.jackieyao.simpleflexboxlayout.MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.example.flexlib.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="ios"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="java"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="python"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓安卓安卓安卓安卓安卓安卓安卓安卓安卓"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="q安卓安卓安卓安卓安卓安卓安卓安卓安Q"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓黄金客户"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓口令；看"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓报编辑部"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓报编辑部2"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓报编辑部3"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓报编辑部34"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓报编辑部55"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓报编辑部66"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓报编辑部rr"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓报编辑部tr"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓报编辑部搞好高合金钢讲话稿"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓就看见"
+                android:textSize="15dp" />
+        </com.example.flexlib.FlexboxLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
