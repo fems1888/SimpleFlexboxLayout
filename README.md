@@ -22,7 +22,7 @@ JAVA代码
 * activity里
 ```java
 flexLayout = findViewById(R.id.flexLayout);
-//flexLayout.setJustifyContent(JustifyContent.FLEX_START);
+flexLayout.setJustifyContent(JustifyContent.FLEX_START);
 //flexLayout.setJustifyContent(JustifyContent.FLEX_END);
 //flexLayout.setJustifyContent(JustifyContent.CENTER);
 ```
