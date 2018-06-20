@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="FlexboxLayout">
-        <attr name="Flex_Margin_Left" format="integer"/>
-        <attr name="Flex_Margin_Top" format="integer"/>
+        <attr name="Flex_Margin_Left" format="dimension"/>
+        <attr name="Flex_Margin_Top" format="dimension"/>
+        <attr name="JustifyContent">
+            <enum name="flex_start" value="0" />
+            <enum name="flex_end" value="1" />
+            <enum name="center" value="2" />
+        </attr>
     </declare-styleable>
 </resources>

@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import static android.view.View.MeasureSpec.AT_MOST;
 import static android.view.View.MeasureSpec.EXACTLY;
@@ -16,21 +17,22 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
  * @author Created by jackieyao on 2018/6/15 下午4:59.
  */
 
-public class FlexboxLayout extends ViewGroup {
+public class FlexboxLayout extends ViewGroup implements FlexContainer {
     private int[] childLeft;
     private int[] childRight;
     private int[] childTop;
     private int[] childBottom;
-    int marginLeft;
-    int marginTop ;
+    private int marginLeft;
+    private int marginTop;
     /**
      * 最小的宽度  如果比这个小就要换行
      */
-    int smallestWidth;
+    private int smallestWidth;
     /**
      * 临时变量 记录最边界的高度异常的值
      */
-    int usedHeightSpec;
+    private int usedHeightSpec;
+    private int mJustifyContent;
 
     public FlexboxLayout(Context context) {
         this(context, null);
@@ -47,12 +49,14 @@ public class FlexboxLayout extends ViewGroup {
     }
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
-        TypedArray ta = getContext().obtainStyledAttributes(attrs,R.styleable.FlexboxLayout,defStyleAttr,0);
-        marginLeft = ta.getInt(R.styleable.FlexboxLayout_Flex_Margin_Left,30);
-        marginTop = ta.getInt(R.styleable.FlexboxLayout_Flex_Margin_Top,30);
-        smallestWidth = 2*marginLeft;
+        TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.FlexboxLayout, defStyleAttr, 0);
+        marginLeft = (int) ta.getDimension(R.styleable.FlexboxLayout_Flex_Margin_Left, 30);
+        marginTop = (int) ta.getDimension(R.styleable.FlexboxLayout_Flex_Margin_Top, 30);
+        mJustifyContent = ta.getInt(R.styleable.FlexboxLayout_JustifyContent, JustifyContent.FLEX_START);
+        smallestWidth = 2 * marginLeft;
         ta.recycle();
     }
+
 
     @Override
     protected void onAttachedToWindow() {
@@ -71,6 +75,7 @@ public class FlexboxLayout extends ViewGroup {
         int childCount = getChildCount();
         int childWidthSpec;
         int childHeightSpec;
+        int maxUsedWidth = 0;
         int usedWidth = 0;
         int usedHeight = 0;
         //child的顶部坐标
@@ -126,10 +131,15 @@ public class FlexboxLayout extends ViewGroup {
 
             chileView.measure(childWidthSpec, childHeightSpec);
             usedWidth = usedWidth + chileView.getMeasuredWidth() + marginLeft;
+            if (usedWidth>maxUsedWidth){
+
+                maxUsedWidth = usedWidth>getScreenWidth(getContext())?getScreenWidth(getContext()):usedWidth;
+            }
             if (selfWidthSpecSize - usedWidth <= smallestWidth) {
                 locationHeight = locationHeight + chileView.getMeasuredHeight();
                 usedHeightSpec = chileView.getMeasuredHeight();
                 usedHeight = usedHeight + chileView.getMeasuredHeight();
+
                 usedWidth = 0;
                 //最后一个会使高度发生异变 这时要重新测量
                 switch (lp.width) {
@@ -172,6 +182,9 @@ public class FlexboxLayout extends ViewGroup {
                 }
                 //重新测量
                 chileView.measure(childWidthSpec, childHeightSpec);
+                if (chileView.getMeasuredWidth()+marginLeft>maxUsedWidth){
+                    maxUsedWidth = chileView.getMeasuredWidth();
+                }
                 //减掉异变的高度 再加上重新测量获取的正确的高度
                 usedHeight = usedHeight - usedHeightSpec + chileView.getMeasuredHeight() + marginTop;
                 locationHeight = locationHeight - usedHeightSpec + chileView.getMeasuredHeight() + marginTop;
@@ -193,11 +206,11 @@ public class FlexboxLayout extends ViewGroup {
                 childRight[i] = usedWidth == 0 ? chileView.getMeasuredWidth() + marginLeft : usedWidth;
                 childBottom[i] = usedHeight;
                 if (usedWidth == 0) {
-                    usedWidth = chileView.getMeasuredWidth() + marginLeft;
+                     usedWidth = chileView.getMeasuredWidth() + marginLeft;
                 }
             }
         }
-        setMeasuredDimension(getScreenWidth(getContext()), usedHeight + marginTop);
+        setMeasuredDimension(maxUsedWidth+marginLeft, usedHeight + marginTop);
 
     }
 
@@ -210,6 +223,22 @@ public class FlexboxLayout extends ViewGroup {
         for (int i = 0; i < cCount; i++) {
             View childView = getChildAt(i);
             childView.layout(childLeft[i], childTop[i], childRight[i], childBottom[i]);
+        }
+        if (changed) {
+            switch (mJustifyContent) {
+                case JustifyContent.FLEX_START:
+                    layout(0, t, getWidth(), b);
+                    break;
+                case JustifyContent.FLEX_END:
+                    layout(getScreenWidth(getContext()) - getWidth(), t, getScreenWidth(getContext()), b);
+                    break;
+                case JustifyContent.CENTER:
+                    layout((getScreenWidth(getContext()) - getWidth())/2, t, (getScreenWidth(getContext()) - getWidth())/2+getWidth(), b);
+                    break;
+                default:
+                    layout(0, t, getWidth(), b);
+                    break;
+            }
 
         }
     }
@@ -217,5 +246,13 @@ public class FlexboxLayout extends ViewGroup {
     public static int getScreenWidth(Context context) {
         DisplayMetrics dm = context.getResources().getDisplayMetrics();
         return dm.widthPixels;
+    }
+
+    @Override
+    public void setJustifyContent(@JustifyContent int justifyContent) {
+        if (justifyContent != mJustifyContent) {
+            mJustifyContent = justifyContent;
+            requestLayout();
+        }
     }
 }
