@@ -2,7 +2,7 @@
 ====
 * 简单的FlexboxLayout,自动换行、排版,不受横竖屏影响;。
 * 目前只是第二版本，后续会继续完善
-* ![](http://recordit.co/dTVlS0yXne/gif/notify)![有START、END、CENTER三种布局](http://g.recordit.co/8Ojl5XcfFB.gif)
+* ![](http://recordit.co/dTVlS0yXne/gif/notify)    ![有START、END、CENTER三种布局](http://g.recordit.co/8Ojl5XcfFB.gif)
 
 
 项目链接 [SimpleFlexboxLayout](https://github.com/fems1888/SimpleFlexboxLayout)
