@@ -1,8 +1,8 @@
 简介
 ====
-* 简单的FlexboxLayout,自动换行、排版,不受横竖屏影响。
-* 目前只是第一版本，后续会继续完善
-* ![](http://g.recordit.co/TyIC2okoVQ.gif)![](http://g.recordit.co/nYpoJLD5VJ.gif)
+* 简单的FlexboxLayout,自动换行、排版,不受横竖屏影响;。
+* 目前只是第二版本，后续会继续完善
+* ![](http://g.recordit.co/TyIC2okoVQ.gif)![](http://g.recordit.co/nYpoJLD5VJ.gif)![有START、END、CENTER三种布局](http://g.recordit.co/8Ojl5XcfFB.gif)
 
 
 项目链接 [SimpleFlexboxLayout](https://github.com/fems1888/SimpleFlexboxLayout)
@@ -13,8 +13,19 @@
 主要特性
 ===
 * 简单,轻量
+* 支持START、END、CENTER三种布局，可以自由选择
 
 使用方法
+===
+JAVA代码
+--
+* activity里
+```java
+flexLayout = findViewById(R.id.flexLayout);
+flexLayout.setJustifyContent(JustifyContent.FLEX_START);
+flexLayout.setJustifyContent(JustifyContent.FLEX_END);
+flexLayout.setJustifyContent(JustifyContent.CENTER);
+```
 ===
 XML布局
 --
@@ -26,10 +37,13 @@ XML布局
         android:layout_height="match_parent">
 
         <com.example.flexlib.FlexboxLayout
-            android:layout_width="match_parent"
+            android:id="@+id/flexLayout"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:Flex_Margin_Left="40"
-            app:Flex_Margin_Top="30>
+            app:Flex_Margin_Left="20dp"
+            android:layout_gravity="center_horizontal"
+            app:Flex_Margin_Top="15dp"
+            app:JustifyContent="center">
 
             <TextView
                 android:layout_width="wrap_content"
