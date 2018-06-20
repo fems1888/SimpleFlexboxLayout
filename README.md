@@ -82,7 +82,7 @@ allprojects {
 Step 2. Add the dependency
 ```java
 dependencies {
-	        implementation 'com.github.fems1888:SimpleFlexboxLayout:1.0.0'
+	        implementation 'com.github.fems1888:SimpleFlexboxLayout:2.0.0'
 	}
 ```
 
