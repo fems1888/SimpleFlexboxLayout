@@ -7,6 +7,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import static android.view.View.MeasureSpec.AT_MOST;
 import static android.view.View.MeasureSpec.EXACTLY;
@@ -225,6 +226,10 @@ public class FlexboxLayout extends ViewGroup implements FlexContainer {
             childView.layout(childLeft[i], childTop[i], childRight[i], childBottom[i]);
         }
         if (changed) {
+            this.l = l;
+            this.t = t;
+            this.r = r;
+            this.b = b;
             switch (mJustifyContent) {
                 case JustifyContent.FLEX_START:
                     layout(0, t, getWidth(), b);
@@ -241,18 +246,40 @@ public class FlexboxLayout extends ViewGroup implements FlexContainer {
             }
 
         }
+        if (change&&changed) {
+            switch (mJustifyContent) {
+                case JustifyContent.FLEX_START:
+                    layout(0, t, getWidth(), b);
+                    break;
+                case JustifyContent.FLEX_END:
+                    layout(getScreenWidth(getContext()) - getWidth(), t, getScreenWidth(getContext()), b);
+                    break;
+                case JustifyContent.CENTER:
+                    layout((getScreenWidth(getContext()) - getWidth())/2, t, (getScreenWidth(getContext()) - getWidth())/2+getWidth(), b);
+                    break;
+                default:
+                    layout(0, t, getWidth(), b);
+                    break;
+            }
+
+        }
+
+
+
     }
 
     public static int getScreenWidth(Context context) {
         DisplayMetrics dm = context.getResources().getDisplayMetrics();
         return dm.widthPixels;
     }
-
+    boolean change;
+    int l; int t; int r; int b;
     @Override
     public void setJustifyContent(@JustifyContent int justifyContent) {
         if (justifyContent != mJustifyContent) {
+            invalidate();
             mJustifyContent = justifyContent;
-            requestLayout();
+            onLayout(true,l,t,r,b);
         }
     }
 }

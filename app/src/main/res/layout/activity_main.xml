@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context="com.example.jackieyao.simpleflexboxlayout.MainActivity">
+
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <com.example.flexlib.FlexboxLayout
+            android:id="@+id/flexLayout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:Flex_Margin_Left="20dp"
@@ -43,7 +46,7 @@
                 android:text="java"
                 android:textSize="15dp" />
 
-            <!-- <TextView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_color_primary"
@@ -947,8 +950,238 @@
                 android:background="@drawable/shape_color_primary"
                 android:padding="10dp"
                 android:text="安卓就看见"
-                android:textSize="15dp" />-->
+                android:textSize="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓安卓"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="ios"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="java"
+                android:textSize="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓安卓"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="ios"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="java"
+                android:textSize="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓安卓"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="ios"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="java"
+                android:textSize="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓安卓"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="ios"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="java"
+                android:textSize="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓安卓"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="ios"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="java"
+                android:textSize="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓安卓"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="ios"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="java"
+                android:textSize="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓安卓"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="ios"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="java"
+                android:textSize="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓安卓"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="ios"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="java"
+                android:textSize="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓安卓"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="ios"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="java"
+                android:textSize="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="安卓安卓"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="ios"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_color_primary"
+                android:padding="10dp"
+                android:text="java"
+                android:textSize="15dp" />
         </com.example.flexlib.FlexboxLayout>
     </ScrollView>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
